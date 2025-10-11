@@ -1,12 +1,6 @@
-console.log("cloudinary.js file loaded!");
 import {v2 as cloudinary} from 'cloudinary';
 import fs from 'fs';
 
-console.log("Cloudinary Config Values:",
-  process.env.CLOUDINARY_CLOUD_NAME,
-  process.env.CLOUDINARY_API_KEY,
-  process.env.CLOUDINARY_API_SECRET
-);
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -21,7 +15,6 @@ const uploadOnCloudinary = async (localFilePath) => {
         const response = await cloudinary.uploader.upload(localFilePath, {
             resource_type: "auto"
         })
-        console.log("response", response);
 
         // delete resource from local folder
         fs.unlinkSync(localFilePath);
