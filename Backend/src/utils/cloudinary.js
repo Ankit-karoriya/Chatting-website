@@ -1,6 +1,7 @@
 import {v2 as cloudinary} from 'cloudinary';
 import fs from 'fs';
 
+process.env.TZ = 'Etc/UTC';
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -21,8 +22,8 @@ const uploadOnCloudinary = async (localFilePath) => {
         return response;
         
     } catch (error) {
-        console.log("catch part is running")
         if (fs.existsSync(localFilePath)) fs.unlinkSync(localFilePath);
+        console.log("Error: ", error);
         return null;
     }
 }
